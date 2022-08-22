@@ -34,3 +34,11 @@ test('Deve retorna -2 se a data for invalida', function() {
     const result = calculateRide([{dist: 3, ds: new Date("abcdf")}]);
     expect(result).toBe(-2);
 });
+
+test('Deve calcular o valor da corrida em múltiplos horários', function() {
+    const result = calculateRide([
+        {dist: 10, ds: new Date("2021-03-01T21:00:00")},
+        {dist: 10, ds: new Date("2021-03-01T22:00:00")},
+    ]);
+    expect(result).toBe(60);
+});
