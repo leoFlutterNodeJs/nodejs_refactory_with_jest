@@ -26,13 +26,11 @@ test('Deve calcular o valor da corrida minima', function() {
 });
 
 test('Deve retorna -1 se a distanceancia for invalida', function() {
-    const fare = calculateRide([{distance: -3, date: new Date("2021-03-01T10:00:00")}]);
-    expect(fare).toBe(-1);
+    expect(()=> calculateRide([{distance: -3, date: new Date("2021-03-01T10:00:00")}])).toThrow(new Error('Invalid Distance'))
 });
 
 test('Deve retorna -2 se a data for invalida', function() {
-    const fare = calculateRide([{distance: 3, date: new Date("abcdf")}]);
-    expect(fare).toBe(-2);
+    expect(() => calculateRide([{distance: 3, date: new Date("abcdf")}])).toThrow(new Error("Invalid Date"));
 });
 
 test('Deve calcular o valor da corrida em múltiplos horários', function() {

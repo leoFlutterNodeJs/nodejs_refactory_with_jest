@@ -14,4 +14,4 @@ dist, ds, calc, movArray, mov, result
 ##### extrai constantes
 ##### extrair váriveis explicativas
 
-
+### 3- comentários
