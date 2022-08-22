@@ -118,77 +118,77 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.calc = void 0;
+exports.calculateRide = void 0;
 // @ts-nocheck
 // calculate ride
-function calc(movArray) {
-    let result = 0;
-    for (const mov of movArray) {
-        if (mov.dist != null &amp;&amp; mov.dist != undefined &amp;&amp; typeof mov.dist === "number" &amp;&amp; mov.dist &gt; 0) {
-            if (mov.ds != null &amp;&amp; mov.ds != undefined &amp;&amp; mov.ds instanceof Date &amp;&amp; mov.ds.toString() !== "Invalid Date") {
+function calculateRide(segments) {
+    let fare = 0;
+    for (const segment of segments) {
+        if (segment.distance != null &amp;&amp; segment.distance != undefined &amp;&amp; typeof segment.distance === "number" &amp;&amp; segment.distance &gt; 0) {
+            if (segment.date != null &amp;&amp; segment.date != undefined &amp;&amp; segment.date instanceof Date &amp;&amp; segment.date.toString() !== "Invalid Date") {
                 // overnight
-                if (mov.ds.getHours() &gt;= 22 || mov.ds.getHours() &lt;= 6) {
+                if (segment.date.getHours() &gt;= 22 || segment.date.getHours() &lt;= 6) {
                     // not sunday
-                    if (mov.ds.getDay() !== 0) {
-                        result += mov.dist * 3.90;
+                    if (segment.date.getDay() !== 0) {
+                        fare += segment.distance * 3.90;
                         // sunday
                     }
                     else {
-                        result += mov.dist * 5;
+                        fare += segment.distance * 5;
                     }
                 }
                 else {
                     // sunday
-                    if (mov.ds.getDay() === 0) {
-                        result += mov.dist * 2.9;
+                    if (segment.date.getDay() === 0) {
+                        fare += segment.distance * 2.9;
                     }
                     else {
-                        result += mov.dist * 2.10;
+                        fare += segment.distance * 2.10;
                     }
                 }
             }
@@ -198,18 +198,18 @@ function calc(movArray) {
             }
         }
         else {
-            // console.log(dist);
+            // console.log(distance);
             return -1;
         }
     }
-    if (result &lt; 10) {
+    if (fare &lt; 10) {
         return 10;
     }
     else {
-        return result;
+        return fare;
     }
 }
-exports.calc = calc;
+exports.calculateRide = calculateRide;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -217,7 +217,7 @@ exports.calc = calc;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-08-22T16:44:15.304Z
+                at 2022-08-22T17:06:27.015Z
             </div>
         <script src="prettify.js"></script>
         <script>

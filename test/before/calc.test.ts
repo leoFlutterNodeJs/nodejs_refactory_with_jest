@@ -1,44 +1,44 @@
 import { calculateRide } from "../../src/before/calc";
 
 test('Deve calcular o valor da corrida em horario normal', function() {
-    const result = calculateRide([{distance: 10, date: new Date("2021-03-01T10:00:00")}]);
-    expect(result).toBe(21);
+    const fare = calculateRide([{distance: 10, date: new Date("2021-03-01T10:00:00")}]);
+    expect(fare).toBe(21);
 });
 
 test('Deve calcular o valor da corrida em horario noturno', function() {
-    const result = calculateRide([{distance: 10, date: new Date("2021-03-01T23:00:00")}]);
-    expect(result).toBe(39);
+    const fare = calculateRide([{distance: 10, date: new Date("2021-03-01T23:00:00")}]);
+    expect(fare).toBe(39);
 });
 
 test('Deve calcular o valor da corrida em horario Domingo', function() {
-    const result = calculateRide([{distance: 10, date: new Date("2021-03-07T10:00:00")}]);
-    expect(result).toBe(29);
+    const fare = calculateRide([{distance: 10, date: new Date("2021-03-07T10:00:00")}]);
+    expect(fare).toBe(29);
 });
 
 test('Deve calcular o valor da corrida em horario Domingo noturno', function() {
-    const result = calculateRide([{distance: 10, date: new Date("2021-03-07T23:00:00")}]);
-    expect(result).toBe(50);
+    const fare = calculateRide([{distance: 10, date: new Date("2021-03-07T23:00:00")}]);
+    expect(fare).toBe(50);
 });
 
 test('Deve calcular o valor da corrida minima', function() {
-    const result = calculateRide([{distance: 3, date: new Date("2021-03-01T10:00:00")}]);
-    expect(result).toBe(10);
+    const fare = calculateRide([{distance: 3, date: new Date("2021-03-01T10:00:00")}]);
+    expect(fare).toBe(10);
 });
 
 test('Deve retorna -1 se a distanceancia for invalida', function() {
-    const result = calculateRide([{distance: -3, date: new Date("2021-03-01T10:00:00")}]);
-    expect(result).toBe(-1);
+    const fare = calculateRide([{distance: -3, date: new Date("2021-03-01T10:00:00")}]);
+    expect(fare).toBe(-1);
 });
 
 test('Deve retorna -2 se a data for invalida', function() {
-    const result = calculateRide([{distance: 3, date: new Date("abcdf")}]);
-    expect(result).toBe(-2);
+    const fare = calculateRide([{distance: 3, date: new Date("abcdf")}]);
+    expect(fare).toBe(-2);
 });
 
 test('Deve calcular o valor da corrida em múltiplos horários', function() {
-    const result = calculateRide([
+    const fare = calculateRide([
         {distance: 10, date: new Date("2021-03-01T21:00:00")},
         {distance: 10, date: new Date("2021-03-01T22:00:00")},
     ]);
-    expect(result).toBe(60);
+    expect(fare).toBe(60);
 });
