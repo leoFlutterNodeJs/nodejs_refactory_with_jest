@@ -4,14 +4,14 @@ export function calculateRide(segments) {
 	let result = 0;
 	for (const segment of segments) {
 		if (segment.distance != null && segment.distance != undefined && typeof segment.distance === "number" && segment.distance > 0) {
-			if (segment.ds != null && segment.ds != undefined && segment.ds instanceof Date && segment.ds.toString() !== "Invalid Date") {
+			if (segment.date != null && segment.date != undefined && segment.date instanceof Date && segment.date.toString() !== "Invalid Date") {
 
 				// overnight
 
-				if (segment.ds.getHours() >= 22 || segment.ds.getHours() <= 6) {
+				if (segment.date.getHours() >= 22 || segment.date.getHours() <= 6) {
 
 					// not sunday
-					if (segment.ds.getDay() !== 0) {
+					if (segment.date.getDay() !== 0) {
 
 						result += segment.distance * 3.90;
 						// sunday
@@ -21,7 +21,7 @@ export function calculateRide(segments) {
 					}
 				} else {
 					// sunday
-					if (segment.ds.getDay() === 0) {
+					if (segment.date.getDay() === 0) {
 
 						result += segment.distance * 2.9;
 
